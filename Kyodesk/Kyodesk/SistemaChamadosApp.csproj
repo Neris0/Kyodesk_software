@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Alvo Windows para habilitar WPF -->
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Definir o nome do assembly e o namespace raiz para coincidir com
+         os namespaces utilizados nos arquivos de código (SistemaChamadosWpf).
+         Isso facilita a referência a tipos via XAML usando clr-namespace. -->
+    <AssemblyName>SistemaChamadosWpf</AssemblyName>
+    <RootNamespace>SistemaChamadosWpf</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Entity Framework Core com provedor SQLite -->
+    <!-- Inclui o pacote principal do EF Core para fornecer métodos de extensão
+         como UseSqlite e Migrate. O provedor SQLite sozinho não traz todos
+         os namespaces de extensão. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
+    <!-- Biblioteca de hashing de senha BCrypt -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+  </ItemGroup>
+
+  <!-- Incluir explicitamente arquivos que podem não ser detectados automaticamente.
+       Isso garante que o conversor seja compilado e disponível para XAML. -->
+  <ItemGroup>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+  </ItemGroup>
+
+</Project>
